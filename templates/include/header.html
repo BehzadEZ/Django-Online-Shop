@@ -1,0 +1,353 @@
+
+{% load static %}
+{% load humanize %}
+<!-- cart---------------------------------->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید</title>
+    <!-- font---------------------------------------->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/materialdesignicons.css' %}">
+    <!-- plugin-------------------------------------->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/noUISlider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/nice-select.css' %}">
+    <!-- main-style---------------------------------->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+
+    <!-- header-------------------------------->
+        <header class="header-main">
+            <div class="text-right">
+                <nav class="top-bar-menu">
+                    <div class="container-main">
+                        <div class="col-12">
+                            <div class="top-bar-right">
+                                <ul class="top-menu-ul d-block">
+                                    <li class="top-menu-item menu-item-type">
+                                        <a href="#" class="top-menu-link">برندها</a>
+                                    </li>
+                                    <li class="top-menu-item menu-item-type">
+                                        <a href="{% url "product:product_list" %}" class="top-menu-link">آرشیو محصولات</a>
+                                    </li>
+                                    <li class="top-menu-item menu-item-type">
+                                        <a href="#" class="top-menu-link">وبلاگ</a>
+                                    </li>
+                                    <li class="top-menu-item menu-item-type">
+                                        <a href="{% url "profile:profile" %}" class="top-menu-link">حساب من</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="container-main">
+                <section class="h-main-row">
+                    <div class="col-lg-9 col-md-9 col-xs-12 pr">
+                        <div class="header-right">
+                            <div class="col-lg-3 pr">
+                                <div class="header-logo row text-right">
+                                    <a href="{% url "home:home" %}">
+                                        <img src="{% static "assets/images/logo.png" %}" alt="دیجی اسمارت">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 pl">
+                                <div class="header-search row text-right">
+                                   <div class="header-search-box">
+    <form action="{% url 'home:search' %}" class="form-search" method="get">
+        <input type="search" class="header-search-input" name="search-input" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+        <div class="action-btns">
+            <button class="btn btn-search" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+            <div class="search-filter">
+                <div class="form-ui">
+                    <div class="custom-select-ui">
+                        <select class="right" name="category">
+                            <option value="">همه دسته ها</option>
+                            <option value="digital">کالای دیجیتال</option>
+                            <option value="beauty">آرایشی بهداشتی</option>
+                            <option value="office">ابزاری اداری</option>
+                            <option value="fashion">مد پوشاک</option>
+                            <option value="home">خانه آشپز خانه</option>
+                            <option value="stationery">لوازم تحریر و هنر</option>
+                            <option value="baby">کودک و نوزاد</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-xs-12 pl">
+                        <div class="header-left">
+                            <div class="header-account text-left">
+                                <div class="d-block">
+                                    <div class="account-box account-box-home-2">
+                                        <div class="nav-account d-block pl">
+                                            <span class="icon-account">
+                                                <img src="{% static "assets/images/man.png" %}" class="avator">
+                                            </span>
+                                            {% if request.user.is_authenticated %}
+                                            <span class="title-account">{{ request.user.first_name }}&nbsp;{{ request.user.last_name }}</span>
+                                            <div class="dropdown-menu">
+                                                <ul class="account-uls mb-0">
+                                                    <li class="account-item">
+                                                        <a href="{% url "profile:profile" %}" class="account-link">پنل کاربری</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="{% url "profile:orders" %}" class="account-link">سفارشات من</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="{% url "profile:edit_address" %}" class="account-link">تنظیمات</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="/account/logout" class="account-link" >خروج</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                                {% else %}
+                                                <span class="title-account"><a href="/account/login">ورود/ثبت نام</a></span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div>
+                    <nav class="header-main-nav">
+                        <div class="d-block">
+                            <div class="align-items-center">
+                               <ul class="menu-ul mega-menu-level-one">
+                                {% for item in category %}
+                                <li id="nav-menu-item" class="menu-item nav-overlay">
+                                    <!-- لینک دسته‌بندی اصلی -->
+                                    <a href="{% url 'product:category_product_list' category_title=item.title %}" class="current-link-menu">
+                                        {{ item.title }}
+                                    </a>
+                            
+                                    <!-- بررسی وجود زیرمجموعه‌ها -->
+                                    {% if item.subs.all %}
+                                        <ul class="sub-menu is-mega-menu-small">
+                                            {% for sub_item in item.subs.all %}
+                                                <li class="menu-mega-item menu-item-type-mega-menu item-small">
+                                                    <!-- لینک زیرمجموعه -->
+                                                    <a href="{% url 'product:category_product_list' category_title=sub_item.title %}" class="mega-menu-link">
+                                                        {{ sub_item.title }}
+                                                    </a>
+                            
+                                                    <!-- بررسی زیرمجموعه‌های زیرمجموعه -->
+                                                    {% if sub_item.subs.all %}
+                                                        <ul class="sub-menu is-mega-menu-small-three">
+                                                            {% for sub_sub_item in sub_item.subs.all %}
+                                                                <li class="menu-mega-item menu-item-type-mega-menu item-small-three">
+                                                                    <!-- لینک زیرمجموعه‌های زیرمجموعه -->
+                                                                    <a href="{% url 'category_product_list' category_title=sub_sub_item.title %}">
+                                                                        {{ sub_sub_item.title }}
+                                                                    </a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% endif %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            
+                                <div class="divider-space-card d-block">
+                                    <div class="header-cart-basket">
+                                        <a href="{% url "cart:cart_list" %}" class="cart-basket-box">
+                                            <span class="icon-cart">
+                                                <i class="mdi mdi-cart"></i>
+                                            </span>
+                                            <span class="title-cart">سبد خرید</span>
+                                            <span class="price-cart">{{ total|intcomma:False  }}
+                                                <span>تومان</span>
+                                            </span>
+                                            <span class="count-cart">{{ total_items }}</span>
+                                        </a>
+                                        <div class="widget-shopping-cart">
+                                            <div class="widget-shopping-cart-content">
+                                                
+                                                <ul class="product-list-widget">
+                                                    <form action="#">
+                                                    {% for itemcart in products_with_quantity %}
+                                                        <li class="mini-cart-item">
+                                                            <div class="mini-cart-item-content">
+                                                                <a href="{% url 'home:remove_from_cart' itemcart.product.id %}" class="mini-cart-item-close">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+                                                                <a href="#" class="mini-cart-item-image d-block">
+                                                                    <img src="{{ itemcart.product.image.url }}">
+                                                                </a>
+                                                                <span class="product-name-card">{{ itemcart.product.title }}</span>
+                                                                <div class="variation">
+                                                                    <span class="variation-n">فروشنده : </span>
+                                                                    <p class="mb-0">دیجی اسمارت </p>
+                                                                </div>
+                                                                <div class="quantity">
+                                                                    <span class="quantity-Price-amount"> {{ itemcart.product.price|intcomma:False  }}
+                                                                        <span>تومان</span>
+                                                                    </span>
+                                                                </div>    
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                </form>
+                                                </ul>
+                                                <div class="mini-card-total">
+                                                    <strong>قیمت کل : </strong>
+                                                    <span class="price-total"> {{ total|intcomma:False  }}
+                                                        <span>تومان</span>
+                                                    </span>
+                                                </div>
+                                                <div class="mini-card-button">
+                                                    <a href="cart.html" class="view-card">مشاهده سبد خرید</a>
+                                                    <a href="{% url "cart:order" %}" class="card-checkout">تسویه حساب</a>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            
+    </ul>
+                <!--    responsive-megamenu-mobile--------------- -->
+                <nav class="sidebar">
+                    <div class="nav-header">
+        <!--              <img class="pic-header" src="images/header-pic.jpg" alt=""> -->
+                      <div class="header-cover"></div>
+                      <div class="logo-wrap">
+                        <a class="logo-icon" href="#"><img alt="logo-icon" src="{% static "assets/images/logo.png" %}" width="40"></a>
+                      </div>
+                    </div>
+                    <ul class="nav-categories ul-base">
+                        <li><a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="mdi mdi-chevron-down"></i>کالای دیجیتال</a>
+                           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+                                <ul>
+                                    <li class="has-sub"><a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                        <ul>
+                                            <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                            <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                            <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                            <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-sub"><a href="#" class="category-level-2">گوشی موبایل</a>
+                                        <ul>
+                                            <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                            <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                            <li><a href="#" class="category-level-3">اپل</a></li>
+                                            <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                            <li><a href="#" class="category-level-3">آنر</a></li>
+                                            <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                            <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-sub"><a href="#" class="category-level-2">دوربین</a>
+                                        <ul>
+                                            <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                            <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                            <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="mdi mdi-chevron-down"></i>آرایشی و بهداشتی</a>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="">
+                                 <ul>
+                                     <li class="has-sub"><a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                             <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                             <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                             <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                         </ul>
+                                     </li>
+                                     <li class="has-sub"><a href="#" class="category-level-2">گوشی موبایل</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                             <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                             <li><a href="#" class="category-level-3">اپل</a></li>
+                                             <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                             <li><a href="#" class="category-level-3">آنر</a></li>
+                                             <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                             <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                         </ul>
+                                     </li>
+                                     <li class="has-sub"><a href="#" class="category-level-2">دوربین</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                             <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                             <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                         </ul>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </li>
+                        <li><a href="#">ابزار و اداری</a></li>
+                        <li><a href="#">مد و پوشاک</a></li>
+                        <li><a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="mdi mdi-chevron-down"></i>خانه و آشپزخانه</a>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample" style="">
+                                 <ul>
+                                     <li class="has-sub"><a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                             <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                             <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                             <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                         </ul>
+                                     </li>
+                                     <li class="has-sub"><a href="#" class="category-level-2">گوشی موبایل</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                             <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                             <li><a href="#" class="category-level-3">اپل</a></li>
+                                             <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                             <li><a href="#" class="category-level-3">آنر</a></li>
+                                             <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                             <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                         </ul>
+                                     </li>
+                                     <li class="has-sub"><a href="#" class="category-level-2">دوربین</a>
+                                         <ul>
+                                             <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                             <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                             <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                         </ul>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </li>
+                         <li><a href="#">لوازم تحریر و هنر</a></li>
+                         <li><a href="#">کودک و نوزاد</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-btn nav-slider nav-btn-home-3">
+                    <span class="linee1"></span>
+                    <span class="linee2"></span>
+                    <span class="linee3"></span>
+                </div>
+              <div class="overlay"></div>
+<!--    responsive-megamenu-mobile--------------- -->
+            </div>
+        </header>
+        <div class="nav-categories-overlay"></div>
+

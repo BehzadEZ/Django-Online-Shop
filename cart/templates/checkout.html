@@ -1,0 +1,108 @@
+{% extends "parent/main.html" %}
+{% load static %}
+{% include "include/header.html" %}
+<!-- checkout------------------------------>
+{% block content %}
+<div class="container-main">
+    <div class="d-block">
+        <section class="blog-checkout d-block order-1">
+            <div class="col-lg">
+                <div class="checkout woocommerce-checkout">
+                    <div class="content-checkout container">
+                        <div class="notices-wrapper">
+                            <div class="col-12">
+                                <div class="form-coupon-toggle">
+                                    <div class="info">
+                                        کد تخفیف دارید؟ 
+                                        <a href="#" class="showcoupon">برای نوشتن کد اینجا کلیک کنید</a>
+                                    </div>
+                                    <div class="checkout-coupon form-coupon">
+                                        <p>اگر کد تخفیف دارید، لطفا وارد کنید.</p>
+                                        <form method="POST"  action="{% url "cart:order" %}" class="form-coupon">
+                                            <div class="form-row">
+                                                <input type="text" name="coupon-code" class="checkout-discount-code" placeholder="کد تخفیف">
+                                                <div class="append pl">
+                                                    <button class="btn-append btn btn-primary" type="submit">اعمال تخفیف</button>
+                                                </div>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle-container">
+                            <div   class="form-checkout">
+                                {% csrf_token %}
+                                <div class="col2-set" id="customer-details">
+                                    <div class="col-12">
+                                        <div class="billing-fields mt-4">
+                                            <h4>جزئیات صورتحساب</h4>
+                                            <div class="form-checkout-row">
+                                                <div class="validate-required">
+                                                    <label for="name">نام تحویل گیرنده <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                    <input type="text" name="full_name"  id="name" value="{{ address.full_name  }}" class="input-name-checkout form-control">
+                                                </div>
+
+                                                <div class="validate-required">
+                                                    <label for="phone-number">شماره موبایل <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                    <input type="text" name="phone_number" id="phone-number" value="{{ address.phone }}" class="input-name-checkout form-control text-left">
+                                                </div>
+                                                
+                                                <div class="validate-required">
+                                                    <label for="post-code">کد پستی <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                    <input type="text" name="postal_code" id="post-code" value="{{ address.postal_code }}" class="input-name-checkout form-control" placeholder="کد پستی را بدون خط تیره بنویسید">
+                                                </div>
+
+                                                <div class="validate-required">
+                                                    <label for="Street">آدرس کامل <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                    <input type="text" name="address" id="post-code" value="{{ address.address }}" class="input-name-checkout form-control">
+                                                </div>
+                                                
+
+                                                
+                                                <label for="address">توضیحات سفارش
+                                                    <span class="optional">(اختیاری)</span>
+                                                </label>
+                                                <textarea  name="description" rows="5" cols="30" id="address" class="textarea-name-checkout form-control" placeholder="یادداشت ها درباره سفارش شما ، برای مثال نکات مهم برای تحویل بار "></textarea>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="checkout-review-order">
+
+
+
+                                    <button class="btn-Order btn btn-primary mt-4 mb-3" type="submit">ثبت سفارش</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% include "include/footer.html" %}
+{% endblock %}
+<!-- checkout------------------------------>
+    
+<!-- footer-------------------------------->
+
+<!-- file js---------------------------------------------------->
+
+{% block script %}
+<script src="{% static 'assets/js/vendor/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.js' %}"></script>
+<!-- plugin----------------------------------------------------->
+<script src="{% static 'assets/js/vendor/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.countdown.js' %}"></script>
+<script src="{% static 'assets/js/vendor/ResizeSensor.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/theia-sticky-sidebar.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/wNumb.js' %}"></script>
+<script src="{% static 'assets/js/vendor/nouislider.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.nice-select.min.js' %}"></script>
+<!-- main js---------------------------------------------------->
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}

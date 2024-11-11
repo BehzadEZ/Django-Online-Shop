@@ -1,0 +1,129 @@
+{% extends "parent/main.html" %}
+{%  load static %}
+<!-- arshive-product--------------------- -->
+{% block content %}
+
+<style>
+    .product-row {
+        margin-bottom: 20px;
+    }
+    
+    .item {
+        background: #f9f9f9;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #eee;
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .item:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hover-img-link img {
+        max-height: 200px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+    }
+    
+    .hover-img-link:hover img {
+        transform: scale(1.05);
+    }
+    
+    .post-title {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .post-title a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .price {
+        font-size: 1.2rem;
+        color: #f55a42;
+    }
+    
+    .price del {
+        color: #999;
+        margin-right: 10px;
+    }
+    
+    .price ins {
+        color: #333;
+    }
+    
+    @media (max-width: 768px) {
+        .col-md-3 {
+            width: 50%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .col-md-3 {
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    
+</style>
+<div class="container">
+    {% if products %}
+        <div class="row product-row" style="padding-top: 60px; padding-bottom: 100px;">
+            {% for product in products %}
+                {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+                    </div><div class="row product-row" >
+                {% endif %}
+                <div class="col-md-3">
+                    <div class="item">
+                        <a href="{% url 'product:product_detail' product.id %}" class="d-block hover-img-link">
+                            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.title }}">
+                        </a>
+                        <h2 class="post-title">
+                            <a href="{% url 'product:product_detail' product.id %}">
+                                {{ product.title }}
+                            </a>
+                        </h2>
+                        <div class="price">
+                            {% if product.discount %}
+                                <del><span>{{ product.price }}<span>تومان</span></span></del>
+                                <ins><span>{{ product.final_price|floatformat:0 }}<span>تومان</span></span></ins>
+                            {% else %}
+                                <span>{{ product.price }}<span>تومان</span></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-products-message" style="padding-top: 400px; padding-bottom: 200px;">
+            <h3 style="text-align: center; color: #FF5733; font-family: 'IRANSans', sans-serif; margin-top: 50px;">
+                فعلاً در این دسته‌بندی محصولی وجود ندارد &#128533;
+            </h3>
+        </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'assets/js/vendor/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.js' %}"></script>
+<!-- plugin--------------------------------------------------- -->
+<script src="{% static 'assets/js/vendor/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.countdown.js' %}"></script>
+<script src="{% static 'assets/js/vendor/lightgallery-all.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.ez-plus.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.nice-select.min.js' %}"></script>
+<!-- main js-------------------------------------------------- -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}
+<!-- arshive-product--------------------- -->

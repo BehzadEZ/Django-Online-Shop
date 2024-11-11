@@ -1,0 +1,17 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% include "include/header.html" with category=category %}
+
+<!-- cart---------------------------------->
+{% block content %}
+
+{% endblock %}
+<!-- cart---------------------------------->
+
+    {% include 'include/footer.html' %}
+
+    {% block script %}{% endblock %}
+</html>

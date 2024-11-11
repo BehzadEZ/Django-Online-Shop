@@ -1,0 +1,54 @@
+{% load static %}
+<div class="col-lg-3 col-md-3 col-xs-12 pr">
+    <div class="sidebar-profile sidebar-navigation">
+        <section class="profile-box">
+            <header class="profile-box-header-inline">
+                <div class="profile-avatar user-avatar profile-img">
+                    <img src="{{avatar_url}}">
+                </div>
+            </header>
+            <footer class="profile-box-content-footer">
+                <span class="profile-box-nameuser"> {{full_name}}</span>
+                <span class="profile-box-registery-date">عضویت در سایت 2 پیش</span>
+                <span class="profile-box-phone">شماره همراه : {{phone}}</span>
+                <div class="profile-box-tabs">
+                    <a href="{% url 'account:logout' %}" class="profile-box-tab-sign-out"><i class="mdi mdi-logout-variant"></i>خروج از حساب</a>
+                </div>
+            </footer>
+        </section>
+        <section class="profile-box">
+            <ul class="profile-account-navs">
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="{% url "profile:profile" %}" class="active"><i class="mdi mdi-account-outline"></i>
+                        پروفایل
+                    </a>
+                </li>
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="{% url "profile:orders" %}" class=""><i class="mdi mdi-cart"></i>
+                        همه سفارش ها
+                    </a>
+                </li>
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="#" class=""><i class="mdi mdi-heart"></i>
+                        لیست علاقه مندی
+                    </a>
+                </li>
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="{% url "profile:address" %}" class=""><i class="mdi mdi-map-outline"></i>
+                        آدرس ها
+                    </a>
+                </li>
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="#" class=""><i class="mdi mdi-email-open-outline"></i>
+                        نظرات
+                    </a>
+                </li>
+                <li class="profile-account-nav-item navigation-link-dashboard">
+                    <a href="#" class=""><i class="mdi mdi-tooltip-text-outline"></i>
+                        اطلاعات حساب
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>

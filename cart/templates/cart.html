@@ -1,0 +1,187 @@
+{% extends "parent/main.html" %}
+{% load static %}
+{% load humanize %}
+<!-- cart---------------------------------->
+{% include "include/header.html" %}
+{% block content %}
+{% if products_with_quantity %}
+<div class="container-main">
+    <div class="d-block">
+        <div class="main-row">
+            <div id="breadcrumb">
+                <i class="mdi mdi-home"></i>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="cart-home">
+                <div class="post-item-cart d-block order-2">
+                    <div class="content-page">
+                        <div class="cart-form">
+                            <form action="#" class="c-form">
+                                <table class="table-cart cart table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="product-cart-name">نام محصول</th>
+                                        <th scope="col" class="product-cart-quantity">تعداد مورد نیاز</th>
+                                        <th scope="col" class="product-cart-price">قیمت</th>
+                                        <th scope="col" class="product-cart-Total">مجموع</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in products_with_quantity %}
+                                        <tr>
+                                            <th scope="row" class="product-cart-name">
+                                                <div class="product-thumbnail-img">
+                                                    <a href="#"><img src="{{ item.product.image.url }}"></a>
+                                                    <div class="product-remove">
+                                                        <a href="{% url 'cart:delete' item.product.id  %}" class="remove">
+                                                            <i class="mdi mdi-close"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-title">
+                                                    <a href="#">{{ item.product.title }}</a>
+                                                    <div class="variation">
+                                                        <div class="variant-color">
+                                                            <span class="variant-color-title">رنگ</span>
+                                                            <div class="variant-shape" style="background-color: blue"></div>
+                                                        </div>
+                                                        <div class="variant-guarantee">
+                                                            <i class="mdi mdi-check"></i>
+                                                            گارانتی ۱۸ ماهه
+                                                        </div>
+                                                        <div class="seller">فروشنده :
+                                                            <span>دیجی اسمارت</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="product-cart-quantity">
+                                                <div class="required-number before">
+                                                    <div class="quantity">
+                                                        <span class="amount">{{ item.quantity }}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="product-cart-price">
+                                                <span class="amount">{{ item.product.price|intcomma:False  }}<span>تومان</span></span>
+                                            </td>
+                                            <td class="product-cart-Total">
+                                                <span class="amount">{{ item.majmoo|intcomma:False  }}<span>تومان</span></span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="cart-collaterals">
+                            <div class="totals d-block">
+                                <h3 class="Total-cart-total">مجموع کل سبد خرید</h3>
+                                <div class="checkout-summary">
+                                    <ul class="checkout-summary-summary">
+                                        <li class="cart-subtotal">
+                                            <span class="amount">قیمت کل</span>
+                                            <span>{{ total|intcomma:False }} تومان</span>
+                                        </li>
+                                        <li class="shipping-totals">
+                                            <span class="amount">حمل و نقل</span>
+                                            <div class="shipping-totals-item">
+                                                <div class="shipping-totals-outline">
+                                                    <label for="#" class="outline-radio">
+                                                        <input type="radio" name="payment_method" id="payment-option-online" checked="checked">
+                                                        <span class="outline-radio-check"></span>
+                                                    </label>
+                                                    <label for="#" class="shipping-totals-title-row">
+                                                        <div class="shipping-totals-title">حمل و نقل رایگان</div>
+                                                    </label>
+                                                </div>
+                                                <div class="shipping-totals-outline">
+                                                    <label for="#" class="outline-radio">
+                                                        <input type="radio" name="payment_method" id="payment-option-online">
+                                                        <span class="outline-radio-check"></span>
+                                                    </label>
+                                                    <label for="#" class="shipping-totals-title-row">
+                                                        <div class="shipping-totals-title">حمل و نقل معمولی: 20,000 تومان</div>
+                                                    </label>
+                                                </div>
+                                                <span class="shipping-destination">حمل و نقل به {{address}}</span>
+                                            </div>
+                                        </li>
+                                        <li class="order-total">
+                                            <span class="amount"> مجموع</span>
+                                            <span> 6,032,000 تومان</span>
+                                        </li>
+                                        <li class="discount-code">
+                                            <div class="align-items-center">
+                                                <div class="col-md-2 pl mt-5">
+                                                    <div class="proceed-to-checkout">
+                                                        <a href="{% url "cart:order" %}" class="checkout-button d-block">تسویه حساب</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="container-main">
+    <div class="d-block">
+        <div class="main-row">
+            <section class="cart-home">
+                <div class="post-item-cart d-block order-2">
+                    <div class="content-page">
+                        <div class="cart-form">
+                            <div class="cart-empty text-center d-block">
+                                <div class="cart-empty-img mb-4 mt-4">
+                                    <img src="{% static "assets/images/shopping-cart.png" %}">
+                                </div>
+                                <p class="cart-empty-title">سبد خرید شما در حال حاضر خالی است.</p>
+                                <a href="{% url "profile:profile" %}" class="btn account-btn btn-primary">ورود به حساب کاربری</a>
+                                <div class="return-to-shop">
+                                    <a href="{% url "home:home" %}" class="backward btn btn-secondary">بازگشت به صفحه اصلی</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% include "include/footer.html" %}
+
+{% endblock %}
+<!-- cart---------------------------------->
+
+
+<!-- file js---------------------------------------------------->
+{% block script %}
+<script src="{% static 'assets/js/vendor/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.js' %}"></script>
+<!-- plugin----------------------------------------------------->
+<script src="{% static 'assets/js/vendor/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.countdown.js' %}"></script>
+<script src="{% static 'assets/js/vendor/ResizeSensor.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/theia-sticky-sidebar.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/wNumb.js' %}"></script>
+<script src="{% static 'assets/js/vendor/nouislider.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery.nice-select.min.js' %}"></script>
+<!-- main js---------------------------------------------------->
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}

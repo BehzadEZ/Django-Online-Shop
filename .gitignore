@@ -1,0 +1,43 @@
+# فایل‌های پایگاه‌داده
+db.sqlite3
+*.sqlite3
+
+# پوشه‌های کش و کامپایل پایتون
+__pycache__/
+*.py[cod]
+*.pyo
+
+# محیط مجازی (Virtual Environment)
+venv/
+env/
+ENV/
+
+# فایل‌های مربوط به تنظیمات امنیتی و اطلاعات حساس
+*.env
+*.secret
+*.key
+
+# فایل‌های استاتیک تولید شده به‌صورت خودکار
+/staticfiles/
+/media/
+
+# فایل‌های مایگریشن
+*.log
+*.pot
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.coverage
+
+# پوشه‌ها و فایل‌های ایجاد شده توسط سیستم‌عامل
+.DS_Store
+Thumbs.db
+
+# فایل‌های مربوط به IDEها
+.idea/
+.vscode/
+
+# فایل‌های تست و گزارشات مربوط به تست‌ها
+htmlcov/
+*.cover
+.tox/

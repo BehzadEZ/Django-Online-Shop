@@ -1,0 +1,534 @@
+
+{% load static %}
+{% load humanize %}
+        <!-- header----------------------------- -->
+        {% include "include/header.html" %}
+                <!-- adplacement----------------------------- -->
+                 
+                    <div class="container-main">
+                        <div class="col-lg-3 col-md-3 col-xs-12 pr">
+                            <div class="adplacement-container-row mt-4">
+                                <a href="#" class="adplacement-item">
+                                    <div class="adplacement-sponsored_box">
+                                        <img src="{{ advimage.advertize_image.url }}">
+                                    </div>
+                                </a> 
+                            </div> 
+                        </div>
+                    <!-- slider-main------------------------- -->
+                    <div class="col-lg-9 col-md-9 col-xs-12 pl">
+                        <div class="slider-main-container d-block">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                {% for item in slider %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                        <img src="{{ item.imagename.url }}" class="d-block w-100" alt="{{ item.title_img }}">
+                                    </div>
+                                {% endfor %}
+
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- moment-slider------------------------ -->
+                    <div class="col-lg-3 col-xs-12 pr">
+                        <div class="slider-moments mt-4">
+                            <div class="widget-suggestion widget card">
+                                <header class="card-header promo-single-headline">
+                                    <h3 class="card-title">پیشنهاد لحظه‌ای</h3>
+                                </header>
+                                <div id="suggestion-slider" class="owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                    <div class="owl-stage-outer">
+                                        <div class="owl-stage" style="transform: translate3d(1369px, 0px, 0px); transition: all 0.25s ease 0s; width: 2190px;">
+                                            {% for item in product %}
+                                                {% if item.SpecialOffer %}
+                                                    <div class="owl-item cloned" style="width: 273.75px;">
+                                                        <div class="item">
+                                                            <a href="{% url 'product:product_detail' item.id %}">
+                                                                <img src="{{ item.image.url }}" class="w-100 mt-5" alt="">
+                                                            </a>
+                                                            <h3 class="product-title">
+                                                                <a href="#"> {{ item.title }} </a>
+                                                            </h3>
+                                                            <div class="price">
+                                                                <span class="amount">{{ item.price|intcomma:False  }}
+                                                                    <span>تومان</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="progressBar">
+                                    <div class="slide-progress" style="width: 100%; transition: width 5000ms ease 0s;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- slider-amazing ----------------------- -->
+                    <div class="col-12">
+                        <div class="slider-widget-products slider-content-tabs slider-amazing-product">
+                            <div class="widget widget-product card slider-content-tabs">
+                                <header class="card-header header-product">
+                                    <span class="title-one">محصولات شگفت انگیز</span>
+                                    <h3 class="card-title"></h3>
+                                </header>
+                                <div class="product-carousel product-amazing owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                    <div class="owl-stage-outer">
+                                        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1162px;">
+                                            <div class="owl-item tab-item active" style="width: 222.313px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link"> 
+                                                        <img src="{% static "assets/images/slider-amazing/as-1.jpg" %}" class="img-fluid" alt="">
+                                                    </a>
+                                                    <h2 class="post-title">
+                                                        <a href="#">
+                                                            لپ تاپ ۱۵ اینچی ایسوس مدل VivoBook Flip TP510UQ – C                                                    
+                                                        </a>
+                                                    </h2>
+                                                    <div class="price">
+                                                        <del><span>12,000,000<span>تومان</span></span></del>
+                                                        <ins><span>11,180,000<span>تومان</span></span></ins>
+                                                    </div>
+                                                    <div class="countdown-timer">
+                                                        <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels="{&quot;label-day&quot;: &quot;روز&quot;, &quot;label-hour&quot;: &quot;ساعت&quot;, &quot;label-minute&quot;: &quot;دقیقه&quot;, &quot;label-second&quot;: &quot;ثانیه&quot;}"><div class="countdown-item"><div class="countdown-value">155</div><div class="countdown-label">روز</div></div><div class="countdown-item"><div class="countdown-value">10</div><div class="countdown-label">ساعت</div></div><div class="countdown-item"><div class="countdown-value">16</div><div class="countdown-label">دقیقه</div></div><div class="countdown-item"><div class="countdown-value">01</div><div class="countdown-label">ثانیه</div></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="owl-item tab-item active" style="width: 222.313px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link">
+                                                        <img src="{% static "assets/images/slider-amazing/as-2.jpg" %}" class="img-fluid" alt="">
+                                                    </a>
+                                                    <h2 class="post-title">
+                                                        <a href="#">
+                                                            یخچال و فریزر سامسونگ مدل HM34 
+                                                        </a>
+                                                    </h2>
+                                                    <div class="price">
+                                                        <del><span>9,000,000<span>تومان</span></span></del>
+                                                        <ins><span>8,500,000<span>تومان</span></span></ins>
+                                                    </div>
+                                                    <div class="countdown-timer">
+                                                        <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels="{&quot;label-day&quot;: &quot;روز&quot;, &quot;label-hour&quot;: &quot;ساعت&quot;, &quot;label-minute&quot;: &quot;دقیقه&quot;, &quot;label-second&quot;: &quot;ثانیه&quot;}"><div class="countdown-item"><div class="countdown-value">155</div><div class="countdown-label">روز</div></div><div class="countdown-item"><div class="countdown-value">10</div><div class="countdown-label">ساعت</div></div><div class="countdown-item"><div class="countdown-value">16</div><div class="countdown-label">دقیقه</div></div><div class="countdown-item"><div class="countdown-value">01</div><div class="countdown-label">ثانیه</div></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="owl-item tab-item active" style="width: 222.313px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link">
+                                                        <img src="{% static "assets/images/slider-amazing/as-3.jpg" %}" class="img-fluid" alt="">
+                                                    </a>
+                                                    <h2 class="post-title">
+                                                        <a href="#">
+                                                            کامپیوتر همه کاره 21.5 اینچی ایسوس مدل AIO V222UAK-B
+                                                        </a>
+                                                    </h2>
+                                                    <div class="price">
+                                                        <del><span>12,000,000<span>تومان</span></span></del>
+                                                        <ins><span>11,180,000<span>تومان</span></span></ins>
+                                                    </div>
+                                                    <div class="countdown-timer">
+                                                        <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels="{&quot;label-day&quot;: &quot;روز&quot;, &quot;label-hour&quot;: &quot;ساعت&quot;, &quot;label-minute&quot;: &quot;دقیقه&quot;, &quot;label-second&quot;: &quot;ثانیه&quot;}"><div class="countdown-item"><div class="countdown-value">155</div><div class="countdown-label">روز</div></div><div class="countdown-item"><div class="countdown-value">10</div><div class="countdown-label">ساعت</div></div><div class="countdown-item"><div class="countdown-value">16</div><div class="countdown-label">دقیقه</div></div><div class="countdown-item"><div class="countdown-value">01</div><div class="countdown-label">ثانیه</div></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="owl-item tab-item active" style="width: 222.313px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link">
+                                                        <img src="{% static "assets/images/slider-amazing/as-4.jpg" %}" class="img-fluid" alt="">
+                                                    </a>
+                                                    <h2 class="post-title">
+                                                        <a href="#">
+                                                            شارژر بی سیم مدل EP-NG930
+                                                        </a>
+                                                    </h2>
+                                                    <div class="price">
+                                                        <del><span>8,000,000<span>تومان</span></span></del>
+                                                        <ins><span>6,500,000<span>تومان</span></span></ins>
+                                                    </div>
+                                                    <div class="countdown-timer">
+                                                        <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels="{&quot;label-day&quot;: &quot;روز&quot;, &quot;label-hour&quot;: &quot;ساعت&quot;, &quot;label-minute&quot;: &quot;دقیقه&quot;, &quot;label-second&quot;: &quot;ثانیه&quot;}"><div class="countdown-item"><div class="countdown-value">155</div><div class="countdown-label">روز</div></div><div class="countdown-item"><div class="countdown-value">10</div><div class="countdown-label">ساعت</div></div><div class="countdown-item"><div class="countdown-value">16</div><div class="countdown-label">دقیقه</div></div><div class="countdown-item"><div class="countdown-value">01</div><div class="countdown-label">ثانیه</div></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="owl-item tab-item" style="width: 222.313px; margin-left: 10px;">
+                                                <div class="item">
+                                                    <a href="#" class="d-block hover-img-link">
+                                                        <img src="{% static "assets/images/slider-amazing/as-5.jpg" %}" class="img-fluid" alt="">
+                                                    </a>
+                                                    <h2 class="post-title">
+                                                        <a href="#">
+                                                            تلویزیون ال ای دی هوشمند سامسونگ مدل 55NU7900 سایز 55 اینچ
+                                                    </a>
+                                                    </h2>
+                                                    <div class="price">
+                                                        <del><span>14,500,000<span>تومان</span></span></del>
+                                                        <ins><span>13,500,000<span>تومان</span></span></ins>
+                                                    </div>
+                                                    <div class="countdown-timer">
+                                                        <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels="{&quot;label-day&quot;: &quot;روز&quot;, &quot;label-hour&quot;: &quot;ساعت&quot;, &quot;label-minute&quot;: &quot;دقیقه&quot;, &quot;label-second&quot;: &quot;ثانیه&quot;}"><div class="countdown-item"><div class="countdown-value">155</div><div class="countdown-label">روز</div></div><div class="countdown-item"><div class="countdown-value">10</div><div class="countdown-label">ساعت</div></div><div class="countdown-item"><div class="countdown-value">16</div><div class="countdown-label">دقیقه</div></div><div class="countdown-item"><div class="countdown-value">01</div><div class="countdown-label">ثانیه</div></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-nav">
+                                        <button type="button" role="presentation" class="owl-prev disabled">
+                                            <i class="fa fa-angle-right"></i>
+                                        </button>
+                                        <button type="button" role="presentation" class="owl-next">
+                                            <i class="fa fa-angle-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="owl-dots disabled"></div>
+                                <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div><div class="owl-dots disabled"></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div><div class="owl-dots disabled"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-xs-12 pl">
+                        <div class="content-widget-amazing mt-4">
+                            <section id="amazing-slider" class="carousel slide carousel-fade card" data-ride="carousel"  style="padding-bottom: 120px; ">
+                                
+                                <div class="row m-0">
+                                    <ol class="carousel-indicators pr-0 d-flex flex-column col-lg-3">
+                                        <li class="carousel-item-li active" data-target="#amazing-slider" data-slide-to="0">
+                                        </li>
+                                        <li class="carousel-item-li" data-target="#amazing-slider" data-slide-to="1" class="">
+                                        </li>
+                                        <li class="carousel-item-li" data-target="#amazing-slider" data-slide-to="2" class="">
+                                        </li>
+                                        <li class="carousel-item-li" data-target="#amazing-slider" data-slide-to="3" class="">
+                                        </li>
+                                        <li class="carousel-item-li" data-target="#amazing-slider" data-slide-to="4" class="">
+                                        </li>
+                                    </ol>
+                                    <div class="carousel-inner p-0 col-12 col-lg-9">
+                                    </hr>
+                                    <p style="text-align: right; font-weight: bold; font-size: 20px;" class="text-danger">پیشنهاد ویژه</p>
+                                    {% for item in product %}
+                                        {% if item.SpecialOffer %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                <div class="row m-0">
+                                                    <div class="right-col col-5 d-flex align-items-center">
+                                                        <a class="w-100 text-center img-link-amazing" href="{% url 'product:product_detail' item.id %}">
+                                                            <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <div class="discount">
+                                                            <span class="discount-percent">{{ item.discount }}
+                                                                <i class="fa fa-percent"></i>
+                                                            </span>
+                                                        </div>
+                                                        <h2 class="product-title">
+                                                            <a href="{% url 'product:product_detail' item.id %}">{{ item.title }}</a>
+                                                        </h2>
+                                                        <div class="price text-center">
+                                                            <ins><span>{{ item.price|intcomma:False  }}<span>تومان</span></span></ins>
+                                                        </div>
+                                                        <ul class="list-group">
+                                                            <!-- این قسمت را با ویژگی‌های مناسب هر محصول پر کنید -->
+                                                            <li class="list-group-item">                                                        
+                                                                <i class="fa fa-check"></i>
+                                                                <span class="title">ظرفیت حافظه داخلی: </span>
+                                                                <span class="text">یک ترابایت</span>
+                                                            </li>
+                                                            <!-- موارد دیگر -->
+                                                        </ul>
+                                                        <div class="countdown-timer">
+                                                            <div class="countdown h4" data-date-time="10/10/2020 12:00" data-labels='{"label-day": "روز", "label-hour": "ساعت", "label-minute": "دقیقه", "label-second": "ثانیه"}'></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- adplacement------------------------- -->
+                        <div class="adplacement-container-row">
+                            <div class="col-6 col-lg-3 pr">
+                                <a href="#" class="adplacement-item">
+                                    <div class="adplacement-sponsored_box">
+                                        <img src="{% static "assets/images/adplacement/a-4.jpg" %}">
+                                    </div>
+                                </a>  
+                            </div>
+                            <div class="col-6 col-lg-3 pr">
+                                <a href="#" class="adplacement-item">
+                                    <div class="adplacement-sponsored_box">
+                                        <img src="{% static "assets/images/adplacement/a-5.jpg" %}">
+                                    </div>
+                                </a>  
+                            </div>
+                            <div class="col-6 col-lg-3 pr">
+                                <a href="#" class="adplacement-item">
+                                    <div class="adplacement-sponsored_box">
+                                        <img src="{% static "assets/images/adplacement/a-6.jpg" %}">
+                                    </div>
+                                </a>  
+                            </div>
+                            <div class="col-6 col-lg-3 pr">
+                                <a href="#" class="adplacement-item">
+                                    <div class="adplacement-sponsored_box">
+                                        <img src="{% static "assets/images/adplacement/a-7.jpg" %}">
+                                    </div>
+                                </a>  
+                            </div>
+                        </div>
+                        </div>
+                        <!-- slider-product-------------------------------->
+                        <div class="col-lg-12 col-md-12 col-xs-12 pr order-1 d-block">
+                            <div class="slider-widget-products slider-content-tabs">
+                                <div class="widget widget-product card slider-content-tabs">
+                                    <header class="card-header header-product">
+                                        <span class="title-one">لوازم خانگی</span>
+                                        <h3 class="card-title"></h3>
+                                    </header>
+                                    <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
+                                                {% for item in product %}
+                                                    {% for category in item.Category.all %}
+                                                    {% if category.title == "لوازم خانگی" %}
+                                                <div class="owl-item active tab-item" style="width: 309.083px; margin-left: 10px;">
+                                                    <div class="item">
+                                                        <a href="{% url 'product:product_detail' item.id %}" class="d-block hover-img-link"> 
+                                                            <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}">
+                                                        </a>                                                                    
+                                                        <h2 class="post-title">
+                                                            <a href="{% url 'product:product_detail' item.id %}">
+                                                                {{ item.title }}
+                                                            </a>
+                                                        </h2>
+                                                        <div class="price">
+                                                            <ins><span>{{ item.price|intcomma:False  }}<span>تومان</span></span></ins>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav">
+                                            <button type="button" role="presentation" class="owl-prev disabled">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
+                                            <button type="button" role="presentation" class="owl-next">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                        </div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-xs-12 pr order-1 d-block">
+                            <div class="slider-widget-products slider-content-tabs">
+                                <div class="widget widget-product card slider-content-tabs">
+                                    <header class="card-header header-product">
+                                        <span class="title-one">گوشی موبایل</span>
+                                        <h3 class="card-title"></h3>
+                                    </header>
+                                    <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1534px;">
+                                                {% for item in product  %}
+                                                    {% for category in item.Category.all %}
+                                                        {% if category.title == "موبایل" %}
+                                                            <div class="owl-item active tab-item" style="width: 296.75px; margin-left: 10px;">
+                                                                <div class="item">
+                                                                    <a href="{% url 'product:product_detail' item.id %}" class="d-block hover-img-link"> 
+                                                                        <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}">
+                                                                    </a>                                                                    
+                                                                    <h2 class="post-title">
+                                                                        <a href="{% url 'product:product_detail' item.id %}">
+                                                                            {{ item.title }}
+                                                                        </a>
+                                                                    </h2>
+                                                                    <div class="price">
+                                                                        <ins><span>{{ item.price|intcomma:False  }}<span>تومان</span></span></ins>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav">
+                                            <button type="button" role="presentation" class="owl-prev disabled">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
+                                            <button type="button" role="presentation" class="owl-next">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                        </div>
+                                        <div class="owl-dots disabled"></div>
+                                    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div><div class="owl-dots disabled"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- adplacement------------------------- -->
+                        <div class="container-main">
+                            <div class="adplacement-container-row">
+                                <div class="col-6 col-lg-6 pr">
+                                    <a href="#" class="adplacement-item">
+                                        <div class="adplacement-sponsored_box">
+                                            <img src="{% static "assets/images/adplacement/a-9.jpg" %}">
+                                        </div>
+                                    </a>  
+                                </div>
+                                <div class="col-6 col-lg-6 pr">
+                                    <a href="#" class="adplacement-item">
+                                        <div class="adplacement-sponsored_box">
+                                            <img src="{% static "assets/images/adplacement/a-11.jpg" %}">
+                                        </div>
+                                    </a>  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- slider-product----------------------------- -->
+                        <div class="col-lg-12 col-md-12 col-xs-12 pr order-1 d-block">
+                            <div class="slider-widget-products slider-content-tabs">
+                                <div class="widget widget-product card slider-content-tabs">
+                                    <header class="card-header header-product">
+                                        <span class="title-one">کامپیوتر و لپ تاپ</span>
+                                        <h3 class="card-title"></h3>
+                                    </header>
+                                    <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1534px;">
+                                                {% for item in product %}
+                                                    {% for category in item.Category.all  %}
+                                                        {% if category.title == "کامپیوتر و لپ تاپ" %}
+                                                            <div class="owl-item active tab-item" style="width: 296.75px; margin-left: 10px;">
+                                                                <div class="item">
+                                                                    <a href="{% url 'product:product_detail' item.id %}" class="d-block hover-img-link"> 
+                                                                        <img src="{{ item.image.url }}" class="img-fluid" alt="">
+                                                                    </a>
+                                                                    <h2 class="post-title">
+                                                                        <a href="{% url 'product:product_detail' item.id %}">
+                                                                            {{ item.title }}
+                                                                        </a>
+                                                                    </h2>
+                                                                    <div class="price">
+                                                                        <ins><span>{{ item.price|intcomma:False  }}<span>تومان</span></span></ins>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav">
+                                            <button type="button" role="presentation" class="owl-prev disabled">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
+                                            <button type="button" role="presentation" class="owl-next">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                        </div>
+                                        <div class="owl-dots disabled"></div>
+                                    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div><div class="owl-dots disabled"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile Phone Ads-------------------------- ----- -->
+                    <aside class="main-row-bg d-block d-md-block">
+                        <div class="bg-cover"></div>
+                        <div class="container-main">
+                            <div class="d-block">
+                                <section class="content-title section-title mt-5">
+                                    <div class="align-items-center">
+                                        <div class="col-auto">
+                                            <div class="title">
+                                                <h1>{{ test_data }}</h1>
+                                            </div>
+                                            
+                                            <div class="subtitle">
+                                                <span>آخرین محصولات</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <div class="mb-3">
+                                    {% for item in product|slice:"4:" %}
+                                        {% for category in item.Category.all %}
+                                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 pt-4 pr">
+                                                <div class="card-product-horizontal">
+                                                    <div class="card-product-horizontal-img">
+                                                        <a href="{% url 'product:product_detail' item.id %}" class="d-block">
+                                                            <img src="{{ item.image.url }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-product-horizontal-content">
+                                                        <div class="card-product-horizontal-content-title">
+                                                            <a href="{% url 'product:product_detail' item.id %}">
+                                                                <h3> {{ item.title }} </h3>
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-product-horizontal-content-price">
+                                                            <span class="amount"> {{ item.price|intcomma:False  }}
+                                                                <span>تومان</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="card-product-horizontal-content-rate">
+                                                            <i class="fa fa-star active"></i>
+                                                            <i class="fa fa-star active"></i>
+                                                            <i class="fa fa-star active"></i>
+                                                            <i class="fa fa-star active"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- footer---------------------------------------- - -->
+                   {% include "include/footer.html" %}
+                <!-- footer----------------------------------------- -->        
+<!-- scroll_Progress----------------------- -->
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+    </svg>
+</div>
+<!-- scroll_Progress----------------------- -->
+
+
+</body>
+<!-- file js-------------------------------------------------- -->
+
+</html>
